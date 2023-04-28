@@ -1,0 +1,10 @@
+<ng-container>
+    <div class="article-card">
+        <h3 class="article-card-title">{{ article?.title }}</h3>
+        <div class="article-card-header">
+            <span class="article-card-date">{{ article?.created_at }}</span>
+            <span class="article-card-author">{{ article?.user?.username }}</span>
+        </div>
+        <p class="article-card-content">{{ article?.content }}</p>
+    </div>
+</ng-container>

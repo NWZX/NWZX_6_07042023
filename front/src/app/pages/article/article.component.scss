@@ -1,0 +1,71 @@
+@use 'src/styles/variables' as *;
+
+.article {
+    padding: 22px 14px;
+}
+.article-header {
+    display: flex;
+    gap: 23px;
+    align-items: center;
+    h1 {
+        margin: 0;
+    }
+}
+.article-content {
+    display: flex;
+    flex-direction: column;
+    gap: 13px;
+    padding: 12px 0px;
+
+    border-bottom: 1px solid black;
+
+    @media (min-width: $desktop-breakpoint) {
+        gap: 16px;
+    }
+}
+
+.article-card-title {
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 19px;
+    margin: 0;
+}
+
+.article-content-header {
+    display: flex;
+    justify-content: left;
+    gap: 16px;
+
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 17px;
+}
+
+.article-date {}
+
+.article-author {}
+
+.article-theme {}
+
+.article-content-text {
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 17px;
+}
+
+.article-comments {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+.article-comment-title {
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 24px;
+    margin: 0;
+}
+.article-form {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+}

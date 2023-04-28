@@ -1,0 +1,26 @@
+<app-layout [displayTopBar]="true">
+    <div class="article">
+        <div class="article-header">
+            <div><img src="assets/arrow_20.svg" alt="Go Back"></div>
+            <h1 class="article-title">{{ article?.title }}</h1>
+        </div>
+        <div class="article-content">
+            <div class="article-content-header">
+                <span class="article-date">{{ article?.created_at }}</span>
+                <span class="article-author">{{ article?.user?.username }}</span>
+                <span class="article-theme">{{ article?.theme?.title }}</span>
+            </div>
+            <p class="article-content-text">{{ article?.content }}</p>
+        </div>
+        <div class="article-comments">
+            <h2 class="article-comment-title">Commentaires</h2>
+            <div class="article-comments-container">
+                <app-comment-card *ngFor="let comment of comments" [comment]="comment"/>
+            </div>
+            <form class="article-form" action="">
+                <app-custom-input placeholder="Écrivez ici votre commentaire" type="text" />
+                <button mat-icon-button><mat-icon aria-hidden="true" aria-label="Down" fontIcon="send"></mat-icon></button>
+            </form>
+        </div>
+    </div>
+</app-layout>

@@ -1,0 +1,7 @@
+<app-layout [displayTopBar]="true">
+    <div class="themes">
+        <div class="themes-container">
+            <app-theme-card *ngFor="let theme of themes" [theme]="theme"></app-theme-card>
+        </div>
+    </div>
+</app-layout>

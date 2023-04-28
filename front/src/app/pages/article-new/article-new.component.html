@@ -1,0 +1,16 @@
+<app-layout [displayTopBar]="true">
+    <div class="article-new">
+        <div class="articles-new-header">
+            <div><img src="assets/arrow_20.svg" alt="Go Back"></div>
+            <h1 class="article-new-title">Créer un nouvel article</h1>
+            <div></div>
+        </div>
+        <div class="article-new-content">
+            <form class="article-new-form" action="">
+                <app-custom-input placeholder="Titre de l’article" type="text" />
+                <app-custom-input placeholder="Contenu de l’article" type="text"/>
+            </form>
+            <button mat-flat-button color="primary">Créer</button>
+        </div>
+    </div>
+</app-layout>

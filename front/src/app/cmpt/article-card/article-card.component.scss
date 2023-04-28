@@ -1,0 +1,41 @@
+@use 'src/styles/variables' as *;
+
+.article-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 6px;
+    border-radius: 8px;
+    padding: 12px 16px;
+    background: #F5F5F5;
+
+    @media (min-width: $desktop-breakpoint) {
+        gap: 9px;
+    }
+}
+
+.article-card-title {
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 19px;
+    margin: 0;
+}
+
+.article-card-header {
+    display: flex;
+    justify-content: space-between;
+
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 17px;
+}
+
+.article-card-date {}
+
+.article-card-author {}
+
+.article-card-content {
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 17px;
+}

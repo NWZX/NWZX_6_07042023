@@ -1,0 +1,4 @@
+<ng-container class="app-layout">
+    <app-topbar *ngIf="displayTopBar" [Mode]="isConnected ? 'LogoMenuAvatar' : 'Logo'"></app-topbar>
+    <ng-content/>
+</ng-container>

@@ -1,0 +1,17 @@
+<ng-container class="topbar">
+    <mat-toolbar>
+        <div class="topbar-logo"><img src="assets/logo.png" alt="logo"></div>
+        <ng-component *ngIf="Mode === 'LogoMenuAvatar'">
+            <div class="topbar-nav">
+                <ul>
+                    <li *ngFor="let link of Links" [class.active]="link.current">
+                        <a [routerLink]="link.link" routerLinkActive="active">{{ link.name }}</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="topbar-avatar">
+                <img src="https://picsum.photos/64/64" alt="avatar">
+            </div>
+        </ng-component>
+    </mat-toolbar>
+</ng-container>
