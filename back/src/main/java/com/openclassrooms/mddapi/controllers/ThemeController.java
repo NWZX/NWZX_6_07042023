@@ -1,5 +1,6 @@
 package com.openclassrooms.mddapi.controllers;
 
+import com.openclassrooms.mddapi.dto.ThemeDto;
 import com.openclassrooms.mddapi.mapper.ThemeMapper;
 import com.openclassrooms.mddapi.models.Theme;
 import com.openclassrooms.mddapi.services.ThemeService;
@@ -29,7 +30,7 @@ public class ThemeController {
      * @return ResponseEntity with a list of Theme DTOs in the response body.
      */
     @GetMapping("")
-    public ResponseEntity<?> findAll() {
+    public ResponseEntity<List<ThemeDto>> findAll() {
         List<Theme> themes = this.themeService.findAll();
 
         return ResponseEntity.ok().body(this.themeMapper.toDto(themes));

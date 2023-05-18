@@ -1,5 +1,6 @@
 package com.openclassrooms.mddapi.controllers;
 
+import com.openclassrooms.mddapi.dto.UserDto;
 import com.openclassrooms.mddapi.mapper.UserMapper;
 import com.openclassrooms.mddapi.models.User;
 import com.openclassrooms.mddapi.services.UserService;
@@ -32,7 +33,7 @@ public class UserController {
      * @return a ResponseEntity containing the user's information if found, or a not found response if not found
      */
     @GetMapping("")
-    public ResponseEntity<?> findByEmail(Authentication authentication) {
+    public ResponseEntity<UserDto> findByEmail(Authentication authentication) {
         try {
             User user = this.userService.findByEmail(authentication.getName());
 
@@ -54,7 +55,7 @@ public class UserController {
      * @return a ResponseEntity containing the updated user's information if successful, or a not found response if the user is not found
      */
     @PutMapping("")
-    public ResponseEntity<?> update(@RequestBody User user, Authentication authentication) {
+    public ResponseEntity<UserDto> update(@RequestBody User user, Authentication authentication) {
         try {
 
             User userToUpdate = this.userService.findByEmail(authentication.getName());

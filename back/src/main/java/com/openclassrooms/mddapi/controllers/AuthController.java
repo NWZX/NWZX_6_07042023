@@ -43,7 +43,7 @@ public class AuthController {
      * @return A ResponseEntity object containing a JwtResponse object with the JWT token and user details upon successful authentication, or a bad request response with an error message if the email or password is incorrect.
      */
     @PostMapping("/login")
-    public ResponseEntity<?> authenticateUser(@Valid @RequestBody LoginRequest loginRequest) {
+    public ResponseEntity<JwtResponse> authenticateUser(@Valid @RequestBody LoginRequest loginRequest) {
         // Authenticates the user with the provided email and password
         Authentication authentication = authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(loginRequest.getEmail(), loginRequest.getPassword()));
@@ -78,7 +78,7 @@ public class AuthController {
      * @return A ResponseEntity object containing a MessageResponse object with a success message if the user is registered successfully, or a bad request response with an error message if the email is already taken.
      */
     @PostMapping("/register")
-    public ResponseEntity<?> registerUser(@Valid @RequestBody SignupRequest signUpRequest) {
+    public ResponseEntity<MessageResponse> registerUser(@Valid @RequestBody SignupRequest signUpRequest) {
         // Checks if the email is already taken
         if (userRepository.existsByEmail(signUpRequest.getEmail())) {
             return ResponseEntity

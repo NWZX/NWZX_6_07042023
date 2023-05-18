@@ -1,5 +1,6 @@
 package com.openclassrooms.mddapi.controllers;
 
+import com.openclassrooms.mddapi.dto.ArticleDto;
 import com.openclassrooms.mddapi.mapper.ArticleMapper;
 import com.openclassrooms.mddapi.models.Article;
 import com.openclassrooms.mddapi.models.Theme;
@@ -40,7 +41,7 @@ public class ArticleController {
      * @return a ResponseEntity containing a list of ArticleDto objects representing the articles.
      */
     @GetMapping("")
-    public ResponseEntity<?> findAll() {
+    public ResponseEntity<List<ArticleDto>> findAll() {
         List<Article> articles = this.articleService.findAll();
 
         return ResponseEntity.ok().body(this.articleMapper.toDto(articles));
@@ -53,7 +54,7 @@ public class ArticleController {
      * @return the article with the given ID
      */
     @GetMapping("/{id}")
-    public ResponseEntity<?> findById(@PathVariable("id") String id) {
+    public ResponseEntity<ArticleDto> findById(@PathVariable("id") String id) {
         try {
             Article article = this.articleService.findById(Long.valueOf(id));
 
@@ -75,7 +76,7 @@ public class ArticleController {
      * @return a ResponseEntity containing an ArticleDto object representing the created article.
      */
     @PostMapping("")
-    public ResponseEntity<?> create(@RequestBody Article article, Authentication authentication ) {
+    public ResponseEntity<ArticleDto> create(@RequestBody Article article, Authentication authentication ) {
         try {
             String currentUserId = authentication.getName();
 

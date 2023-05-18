@@ -1,5 +1,6 @@
 package com.openclassrooms.mddapi.controllers;
 
+import com.openclassrooms.mddapi.dto.CommentDto;
 import com.openclassrooms.mddapi.mapper.CommentMapper;
 import com.openclassrooms.mddapi.models.Article;
 import com.openclassrooms.mddapi.models.Comment;
@@ -39,7 +40,7 @@ public class CommentController {
      * @return a ResponseEntity containing a list of CommentDto objects and an HTTP status code
      */
     @GetMapping("/article/{id}")
-    public ResponseEntity<?> findByArticleId(@PathVariable Long id) {
+    public ResponseEntity<List<CommentDto>> findByArticleId(@PathVariable Long id) {
         Article article = this.articleService.findById(id);
 
         if (article == null) {
@@ -59,7 +60,7 @@ public class CommentController {
      * @return a ResponseEntity containing the created CommentDto object and an HTTP status code
      */
     @PostMapping("")
-    public ResponseEntity<?> create(@RequestBody Comment comment, Authentication authentication) {
+    public ResponseEntity<CommentDto> create(@RequestBody Comment comment, Authentication authentication) {
         // Retrieve the article and user associated with the comment
         Article article = this.articleService.findById(comment.getArticle().getId());
         User user = this.userService.findByEmail(authentication.getName());
