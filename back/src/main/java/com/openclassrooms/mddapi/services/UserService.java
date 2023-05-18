@@ -1,3 +1,15 @@
+package com.openclassrooms.mddapi.services;
+
+import com.openclassrooms.mddapi.exception.BadRequestException;
+import com.openclassrooms.mddapi.exception.NotFoundException;
+import com.openclassrooms.mddapi.models.Theme;
+import com.openclassrooms.mddapi.models.User;
+import com.openclassrooms.mddapi.repository.ThemeRepository;
+import com.openclassrooms.mddapi.repository.UserRepository;
+import org.springframework.stereotype.Service;
+
+import java.util.stream.Collectors;
+
 /**
  * This class provides services related to the User model.
  */

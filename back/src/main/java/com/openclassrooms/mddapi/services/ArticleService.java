@@ -1,3 +1,11 @@
+package com.openclassrooms.mddapi.services;
+
+import com.openclassrooms.mddapi.models.Article;
+import com.openclassrooms.mddapi.repository.ArticleRepository;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
+
 /**
  * This class represents the service layer for the Article entity.
  * It provides methods to create, find, delete and retrieve all articles.

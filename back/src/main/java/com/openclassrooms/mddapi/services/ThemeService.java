@@ -1,3 +1,11 @@
+package com.openclassrooms.mddapi.services;
+
+import com.openclassrooms.mddapi.models.Theme;
+import com.openclassrooms.mddapi.repository.ThemeRepository;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
+
 /**
  * This class represents a service for managing themes.
  */
