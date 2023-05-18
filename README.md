@@ -48,3 +48,12 @@ To install and run the app, follow these steps:
        ```
 
 
+## Info
+
+App is running on http://localhost:4200
+
+Backend is running on http://localhost:8080
+
+Swagger is running on http://localhost:8080/swagger/swagger-ui.html
+
+Api documentation is running on http://localhost:8080/v3/api-docs/
