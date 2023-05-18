@@ -1,7 +1,5 @@
 package com.openclassrooms.mddapi.dto;
 
-import com.openclassrooms.mddapi.models.Article;
-import com.openclassrooms.mddapi.models.User;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;

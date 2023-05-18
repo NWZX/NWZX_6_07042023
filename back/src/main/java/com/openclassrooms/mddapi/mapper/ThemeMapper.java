@@ -2,8 +2,6 @@ package com.openclassrooms.mddapi.mapper;
 
 import com.openclassrooms.mddapi.dto.ThemeDto;
 import com.openclassrooms.mddapi.models.Theme;
-import com.openclassrooms.mddapi.models.User;
-import org.mapstruct.Mapper;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Component;
 

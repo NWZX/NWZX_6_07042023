@@ -4,7 +4,6 @@ import com.openclassrooms.mddapi.mapper.ArticleMapper;
 import com.openclassrooms.mddapi.models.Article;
 import com.openclassrooms.mddapi.models.Theme;
 import com.openclassrooms.mddapi.models.User;
-import com.openclassrooms.mddapi.security.jwt.AuthTokenFilter;
 import com.openclassrooms.mddapi.services.ArticleService;
 import com.openclassrooms.mddapi.services.ThemeService;
 import com.openclassrooms.mddapi.services.UserService;
@@ -12,7 +11,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 
@@ -58,11 +56,6 @@ public class ArticleController {
         }
     }
 
-    /**
-     * Create a new article and link it to the current user
-     * @param article
-     * @return
-     */
     @PostMapping("")
     public ResponseEntity<?> create(@RequestBody Article article, Authentication authentication ) {
         try {

@@ -2,7 +2,6 @@ package com.openclassrooms.mddapi.mapper;
 
 import com.openclassrooms.mddapi.dto.CommentDto;
 import com.openclassrooms.mddapi.models.Comment;
-import com.openclassrooms.mddapi.models.User;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Component;
 

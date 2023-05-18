@@ -1,6 +1,5 @@
 package com.openclassrooms.mddapi.controllers;
 
-import com.openclassrooms.mddapi.dto.UserLtdDto;
 import com.openclassrooms.mddapi.mapper.UserMapper;
 import com.openclassrooms.mddapi.models.User;
 import com.openclassrooms.mddapi.services.UserService;
@@ -51,9 +50,6 @@ public class UserController {
                 return ResponseEntity.notFound().build();
             }
 
-            UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-
-
             userToUpdate.setName(user.getName());
             userToUpdate.setEmail(user.getEmail());
 
@@ -65,9 +61,9 @@ public class UserController {
     }
 
     @DeleteMapping("")
-    public ResponseEntity<?> delete(@PathVariable("id") String id) {
+    public ResponseEntity<?> delete(Authentication authentication) {
         try {
-            User user = this.userService.findById(Long.valueOf(id));
+            User user = this.userService.findByEmail(authentication.getName());
 
             if (user == null) {
                 return ResponseEntity.notFound().build();
@@ -79,7 +75,7 @@ public class UserController {
                 return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
             }
 
-            this.userService.delete(Long.parseLong(id));
+            this.userService.delete(user.getId());
             return ResponseEntity.ok().build();
         } catch (NumberFormatException e) {
             return ResponseEntity.badRequest().build();
