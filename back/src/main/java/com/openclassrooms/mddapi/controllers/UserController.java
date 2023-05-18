@@ -25,6 +25,12 @@ public class UserController {
         this.userService = userService;
     }
 
+    /**
+     * Finds a user by their email address.
+     *
+     * @param authentication the authentication object containing the user's email address
+     * @return a ResponseEntity containing the user's information if found, or a not found response if not found
+     */
     @GetMapping("")
     public ResponseEntity<?> findByEmail(Authentication authentication) {
         try {
@@ -40,6 +46,13 @@ public class UserController {
         }
     }
 
+    /**
+     * Updates the user's name and email address.
+     *
+     * @param user the User object containing the updated name and email address
+     * @param authentication the authentication object containing the user's email address
+     * @return a ResponseEntity containing the updated user's information if successful, or a not found response if the user is not found
+     */
     @PutMapping("")
     public ResponseEntity<?> update(@RequestBody User user, Authentication authentication) {
         try {
@@ -60,6 +73,12 @@ public class UserController {
         }
     }
 
+    /**
+     * Deletes the user associated with the authenticated email address.
+     *
+     * @param authentication the authentication object containing the user's email address
+     * @return a ResponseEntity indicating whether the deletion was successful or not
+     */
     @DeleteMapping("")
     public ResponseEntity<?> delete(Authentication authentication) {
         try {
@@ -82,6 +101,13 @@ public class UserController {
         }
     }
 
+    /**
+     * Subscribes the authenticated user to a theme with the given ID.
+     *
+     * @param themeId the ID of the theme to subscribe to
+     * @param authentication the authentication object containing the user's email address
+     * @return a ResponseEntity indicating whether the subscription was successful or not
+     */
     @GetMapping("/subscribe/{themeId}")
     public ResponseEntity<?> subscribe(@PathVariable("themeId") String themeId, Authentication authentication) {
         try {
@@ -98,6 +124,13 @@ public class UserController {
         }
     }
 
+    /**
+     * Unsubscribes the authenticated user from a theme with the given ID.
+     *
+     * @param themeId the ID of the theme to unsubscribe from
+     * @param authentication the authentication object containing the user's email address
+     * @return a ResponseEntity indicating whether the unsubscription was successful or not
+     */
     @GetMapping("/unsubscribe/{themeId}")
     public ResponseEntity<?> unsubscribe(@PathVariable("themeId") String themeId, Authentication authentication) {
         try {

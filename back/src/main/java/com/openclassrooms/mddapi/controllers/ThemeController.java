@@ -24,6 +24,10 @@ public class ThemeController {
         this.themeMapper = themeMapper;
     }
 
+    /**
+     * This method handles the GET request to retrieve all themes.
+     * @return ResponseEntity with a list of Theme DTOs in the response body.
+     */
     @GetMapping("")
     public ResponseEntity<?> findAll() {
         List<Theme> themes = this.themeService.findAll();

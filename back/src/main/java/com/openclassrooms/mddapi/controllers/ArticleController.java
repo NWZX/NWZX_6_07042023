@@ -34,6 +34,11 @@ public class ArticleController {
         this.themeService = themeService;
     }
 
+    /**
+     * Retrieves all articles from the database.
+     *
+     * @return a ResponseEntity containing a list of ArticleDto objects representing the articles.
+     */
     @GetMapping("")
     public ResponseEntity<?> findAll() {
         List<Article> articles = this.articleService.findAll();
@@ -41,6 +46,12 @@ public class ArticleController {
         return ResponseEntity.ok().body(this.articleMapper.toDto(articles));
     }
 
+    /**
+     * Returns the article with the given ID.
+     *
+     * @param id the ID of the article
+     * @return the article with the given ID
+     */
     @GetMapping("/{id}")
     public ResponseEntity<?> findById(@PathVariable("id") String id) {
         try {
@@ -56,6 +67,13 @@ public class ArticleController {
         }
     }
 
+    /**
+     * Creates a new article in the database.
+     *
+     * @param article the Article object representing the article to be created.
+     * @param authentication the Authentication object representing the current user's authentication.
+     * @return a ResponseEntity containing an ArticleDto object representing the created article.
+     */
     @PostMapping("")
     public ResponseEntity<?> create(@RequestBody Article article, Authentication authentication ) {
         try {
