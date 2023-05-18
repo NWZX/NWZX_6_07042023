@@ -1,26 +1,23 @@
 import { Component, Input } from '@angular/core';
 import { FormControl } from '@angular/forms';
+import { ITheme } from 'src/app/interfaces/itheme';
 
 @Component({
-  selector: 'app-custom-input',
-  templateUrl: './custom-input.component.html',
-  styleUrls: ['./custom-input.component.scss'],
+  selector: 'app-custom-select',
+  templateUrl: './custom-select.component.html',
+  styleUrls: ['./custom-select.component.scss'],
 })
-export class CustomInputComponent {
+export class CustomSelectComponent {
   @Input() id: string;
   @Input() label: string;
-  @Input() type: string;
   @Input() placeholder: string;
-  @Input() value: string;
-  @Input() name: string;
+  @Input() options: ITheme[] | null;
   @Input() control!: FormControl;
 
   constructor() {
     this.id = '';
     this.label = '';
-    this.type = '';
     this.placeholder = '';
-    this.value = '';
-    this.name = '';
+    this.options = [];
   }
 }

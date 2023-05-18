@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ILoginRequest } from 'src/app/interfaces/iloginrequest';
@@ -37,7 +37,11 @@ export class LoginComponent {
         this.sessionService.logIn(response);
         this.router.navigate(['/articles']);
       },
-      error: (error) => (this.onError = true),
+      error: (error) => console.error(error),
     });
+  }
+  
+  public back(): void {
+    this.router.navigate(['/']);
   }
 }

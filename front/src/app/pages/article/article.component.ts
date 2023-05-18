@@ -1,54 +1,86 @@
 import { Component } from '@angular/core';
+import { FormBuilder, Validators } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
 import { IArticle } from 'src/app/interfaces/iarticle';
 import { IComment } from 'src/app/interfaces/icomment';
+import { ArticlesService } from 'src/app/services/articles.service';
+import { CommentsService } from 'src/app/services/comments.service';
 
 @Component({
   selector: 'app-article',
   templateUrl: './article.component.html',
-  styleUrls: ['./article.component.scss']
+  styleUrls: ['./article.component.scss'],
 })
 export class ArticleComponent {
-  article: IArticle | undefined;
-  comments: IComment[];
+  public hide = true;
+  public onError = false;
 
-  constructor() {
-    this.article = {
-      id: 1,
-      theme: {
-        id: 1,
-        title: 'Angular',
+  public articleId?: number;
+  article?: IArticle;
+  comments?: IComment[];
+
+  //FIXME: Add validation to form
+  public form;
+
+  constructor(
+    private articleService: ArticlesService,
+    private commentService: CommentsService,
+    private router: Router,
+    private fb: FormBuilder,
+    private route: ActivatedRoute
+  ) {
+    this.form = this.fb.group({
+      content: [
+        '',
+        [Validators.required, Validators.min(3), Validators.max(500)],
+      ],
+    });
+    try {
+      this.articleId = parseInt(this.route.snapshot.paramMap.get('id')!, 10);
+    } catch (error) {
+      console.error('Error parsing article ID:', error);
+    }
+  }
+
+  public ngOnInit(): void {
+    if (!this.articleId) {
+      this.router.navigate(['/articles']);
+      return;
+    }
+    this.articleService.getArticle(this.articleId).subscribe({
+      next: (article: IArticle) => {
+        this.article = article;
       },
-      user: {
-        id: 1,
-        username: 'admin',
+    });
+    this.commentService.getCommentsByArticle(this.articleId).subscribe({
+      next: (comments: IComment[]) => {
+        this.comments = comments;
       },
-      title: 'Angular',
-      content:
-        "Content: lorem ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled...",
-      created_at: '2021-01-01 00:00:00',
-      updated_at: '2021-01-01 00:00:00',
-    };
-    this.comments = [
-      {
-        id: 1,
-        user: {
-          id: 1,
-          username: 'admin',
+    });
+  }
+  public submit(): void {
+    if (this.form.valid && this.articleId) {
+      const commentRequest: Partial<IComment> = {
+        article: {
+          id: this.articleId,
+          title: '',
         },
-        content: 'Comment 1',
-        created_at: '2021-01-01 00:00:00',
-        updated_at: '2021-01-01 00:00:00',
-      },
-      {
-        id: 2,
-        user: {
-          id: 1,
-          username: 'admin',
+        content: this.form.value.content as string,
+      };
+      this.commentService.createComment(commentRequest).subscribe({
+        next: (response: IComment) => {
+          this.commentService.getCommentsByArticle(this.articleId as number).subscribe({
+            next: (comments: IComment[]) => {
+              this.comments = comments;
+            },
+          });
+          this.form.reset();
         },
-        content: 'Comment 2',
-        created_at: '2021-01-01 00:00:00',
-        updated_at: '2021-01-01 00:00:00',
-      }
-    ];
+        error: (_) => (this.onError = true),
+      });
+    }
+  }
+  public back(): void {
+    this.router.navigate(['/articles']);
   }
 }

@@ -1,8 +1,12 @@
 export interface IComment {
     id: number;
+    article: {
+        id: number;
+        title: string;
+    }
     user: {
         id: number;
-        username?: string;
+        name?: string;
     };
     content: string;
     created_at: string;

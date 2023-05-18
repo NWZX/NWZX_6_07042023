@@ -1,25 +1,50 @@
-# P6-Full-Stack-reseau-dev
+# MDD APP
 
-## Front
+This is the README file for the MDD app. The app is a web-based application built using Java 11 and NodeJS 18, with a MariaDB database. The app allows users to publish article and subscribe to them. The app also allows users to create and manage their own account.
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 14.1.3.
+## Requirements
+Before installing and running the MDD app, make sure you have the following requirements installed on your machine:
 
-Don't forget to install your node_modules before starting (`npm install`).
+ - JAVA 11
+ - NodeJS 18
+ - MariaDB
 
-### Development server
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+## Installation
 
-### Build
+To install and run the app, follow these steps:
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+1. Set up a Maria Server and create a database named "mdd".
 
-### Where to start
+2. Import the file "ressources/script.sql" to create the schema.
 
-As you may have seen if you already started the app, a simple home page containing a logo, a title and a button is available. If you take a look at its code (in the `home.component.html`) you will see that an external UI library is already configured in the project.
+3. For the frontend (VSCode):
 
-This library is `@angular/material`, it's one of the most famous in the angular ecosystem. As you can see on their docs (https://material.angular.io/), it contains a lot of highly customizable components that will help you design your interfaces quickly.
+    a. Navigate to the "front" directory.
+    
+    b. Run the following commands:
+    
+       ```
+       npm install
+       npm run start
+       ```
 
-Note: I recommend to use material however it's not mandatory, if you prefer you can get ride of it.
+    c. The app should be running on http://localhost:4200
 
-Good luck!
+4. For the backend (IntelliJ):
+
+    a. Edit the file "back/src/main/resources/application.properties" with your database credentials.
+
+        ```
+        spring.datasource.username=YOUR USERNAME
+        spring.datasource.password=YOUR PASSWORD
+        ```
+    
+    b. Run the following command:
+    
+       ```
+       cd back
+       mvn clean install
+       ```
+
+

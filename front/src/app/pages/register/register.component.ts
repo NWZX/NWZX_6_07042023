@@ -39,4 +39,8 @@ export class RegisterComponent {
       error: (_) => (this.onError = true),
     });
   }
+
+  public back(): void {
+    this.router.navigate(['/']);
+  }
 }

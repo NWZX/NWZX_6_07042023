@@ -1,10 +1,10 @@
 <ng-container>
-    <div class="article-card">
+    <a [routerLink]="'/articles/'+ article?.id" routerLinkActive="active" class="article-card">
         <h3 class="article-card-title">{{ article?.title }}</h3>
         <div class="article-card-header">
-            <span class="article-card-date">{{ article?.created_at }}</span>
-            <span class="article-card-author">{{ article?.user?.username }}</span>
+            <span class="article-card-date">{{ article?.createdAt | date: 'dd-MM-yyyy' }}</span>
+            <span class="article-card-author">{{ article?.user?.name }}</span>
         </div>
         <p class="article-card-content">{{ article?.content }}</p>
-    </div>
+    </a>
 </ng-container>

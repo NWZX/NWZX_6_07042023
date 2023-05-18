@@ -6,10 +6,10 @@ export interface IArticle {
     }
     user: {
         id: number;
-        username?: string;
+        name?: string;
     }
     title: string;
     content: string;
-    created_at: string;
-    updated_at: string;
+    createdAt: string;
+    updatedAt: string;
 }

@@ -1,11 +1,11 @@
 <app-layout [displayTopBar]="true">
     <div class="articles">
         <div class="articles-header">
-            <button mat-flat-button color="primary">Créer un article</button>
-            <button mat-flat-button>Trier par <mat-icon aria-hidden="true" aria-label="Down" fontIcon="arrow_downward" iconPositionEnd></mat-icon></button>
+            <button mat-flat-button color="primary" (click)="goToArticleNew()">Créer un article</button>
+            <button mat-flat-button (click)="sort()">Trier par <mat-icon aria-hidden="true" aria-label="Down" fontIcon="arrow_downward" iconPositionEnd></mat-icon></button>
         </div>
         <div class="articles-container">
-            <app-article-card *ngFor="let article of articles" [article]="article"></app-article-card>
+            <app-article-card *ngFor="let article of (articles$ | async)" [article]="article"></app-article-card>
         </div>
     </div>
 </app-layout>

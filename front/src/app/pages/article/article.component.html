@@ -1,13 +1,13 @@
 <app-layout [displayTopBar]="true">
     <div class="article">
         <div class="article-header">
-            <div><img src="assets/arrow_20.svg" alt="Go Back"></div>
+            <div><button mat-icon-button aria-label="Back" (click)="back()"><img src="assets/arrow_20.svg" alt="Back"/></button></div>
             <h1 class="article-title">{{ article?.title }}</h1>
         </div>
         <div class="article-content">
             <div class="article-content-header">
-                <span class="article-date">{{ article?.created_at }}</span>
-                <span class="article-author">{{ article?.user?.username }}</span>
+                <span class="article-date">{{ article?.createdAt | date: 'dd-MM-yyyy' }}</span>
+                <span class="article-author">{{ article?.user?.name }}</span>
                 <span class="article-theme">{{ article?.theme?.title }}</span>
             </div>
             <p class="article-content-text">{{ article?.content }}</p>
@@ -17,9 +17,9 @@
             <div class="article-comments-container">
                 <app-comment-card *ngFor="let comment of comments" [comment]="comment"/>
             </div>
-            <form class="article-form" action="">
-                <app-custom-input placeholder="Écrivez ici votre commentaire" type="text" />
-                <button mat-icon-button><mat-icon aria-hidden="true" aria-label="Down" fontIcon="send"></mat-icon></button>
+            <form class="article-form" [formGroup]="form" (ngSubmit)="submit()">
+                <app-custom-textarea class="act" placeholder="Écrivez ici votre commentaire" [control]="form.controls['content']"/>
+                <button mat-icon-button><img src="assets/icon_send.svg" alt="Send"/></button>
             </form>
         </div>
     </div>

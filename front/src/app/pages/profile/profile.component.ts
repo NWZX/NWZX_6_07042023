@@ -1,39 +1,66 @@
 import { Component } from '@angular/core';
+import { FormBuilder, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { Observable } from 'rxjs';
 import { ITheme } from 'src/app/interfaces/itheme';
+import { IUser } from 'src/app/interfaces/iuser';
+import { SessionService } from 'src/app/services/session.service';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html',
-  styleUrls: ['./profile.component.scss']
+  styleUrls: ['./profile.component.scss'],
 })
 export class ProfileComponent {
-  themes: ITheme[];
-  constructor() {
-    this.themes = [
-      {
-        id: 1,
-        title: 'Angular',
-        description:
-          'Angular is a TypeScript-based open-source web application framework led by the Angular Team at Google and by a community of individuals and corporations.',
-        created_at: '2021-01-01 00:00:00',
-        updated_at: '2021-01-01 00:00:00',
+  public user?: IUser;
+  public hide = true;
+  public onError = false;
+
+  //FIXME: Add validation to form
+  public form;
+
+  constructor(
+    private userService: UserService,
+    private sessionService: SessionService,
+    private router: Router,
+    private fb: FormBuilder
+  ) {
+    this.form = this.fb.group({
+      email: ['', [Validators.required, Validators.email]],
+      name: [
+        '',
+        [Validators.required, Validators.min(3), Validators.max(20)],
+      ],
+    });
+  }
+
+  public ngOnInit(): void {
+    this.userService.getUser().subscribe({
+      next: (user: IUser) => {
+        this.user = user;
+        this.form.setValue({ email: user.email, name: user.name });
       },
-      {
-        id: 2,
-        title: 'React',
-        description:
-          'React is an open-source, front end, JavaScript library for building user interfaces or UI components.',
-        created_at: '2021-01-01 00:00:00',
-        updated_at: '2021-01-01 00:00:00',
-      },
-      {
-        id: 3,
-        title: 'Vue',
-        description:
-          'Vue.js is an open-source model–view–viewmodel front end JavaScript framework for building user interfaces and single-page applications.',
-        created_at: '2021-01-01 00:00:00',
-        updated_at: '2021-01-01 00:00:00',
-      },
-    ];
+    });
+  }
+
+  public submit(): void {
+    if (this.form.value.email != this.user?.email || this?.form.value.name != this.user?.name) {
+      const putRequest = this.form.value as Partial<IUser>;
+      this.userService.updateUser(putRequest).subscribe({
+        next: (response: IUser) => {
+          if (this.form.value.email != this.user?.email)
+            this.logout();
+          else
+            this.user = response;
+        },
+        error: (error) => console.error(error),
+      });
+    }
+  }
+
+  public logout(): void {
+    this.sessionService.logOut();
+    this.router.navigate(['/login']);
   }
 }

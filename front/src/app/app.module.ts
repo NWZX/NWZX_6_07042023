@@ -26,8 +26,10 @@ import { CommentCardComponent } from './cmpt/comment-card/comment-card.component
 import { MobileMenuComponent } from './cmpt/mobile-menu/mobile-menu.component';
 import { CustomInputComponent } from './cmpt/custom-input/custom-input.component';
 import { JwtInterceptor } from './interceptors/jwt.interceptor';
-import { HTTP_INTERCEPTORS } from '@angular/common/http';
-import { ReactiveFormsModule } from '@angular/forms';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { CustomSelectComponent } from './cmpt/custom-select/custom-select.component';
+import { CustomTextareaComponent } from './cmpt/custom-textarea/custom-textarea.component';
 
 const materialModule = [
   MatButtonModule,
@@ -36,7 +38,8 @@ const materialModule = [
   MatCardModule,
   MatSidenavModule,
   MatProgressSpinnerModule,
-  MatIconModule
+  MatIconModule,
+  MatSidenavModule
 ];
 
 const pagesModule = [
@@ -64,13 +67,17 @@ const cmptModule = [
   declarations: [
     AppComponent,
     ...pagesModule,
-    ...cmptModule
+    ...cmptModule,
+    CustomSelectComponent,
+    CustomTextareaComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
+    FormsModule,
     ReactiveFormsModule,
+    HttpClientModule,
     ...materialModule
   ],
   providers: [

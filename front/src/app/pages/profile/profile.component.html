@@ -2,17 +2,17 @@
     <div class="profile">
         <div class="profile-content">
             <h1 class="profile-title">Profil utilisateur</h1>
-            <form class="profile-form" action="">
-                <app-custom-input type="text" value="demo" />
-                <app-custom-input type="email" value="email@email.com"/>
+            <form class="profile-form" [formGroup]="form" (ngSubmit)="submit()">
+                <app-custom-input type="text" [control]="form.controls['name']" />
+                <app-custom-input type="email" [control]="form.controls['email']"/>
+                <div class="profile-btn-grp">
+                    <button mat-flat-button color="primary" type="submit">Sauvegarder</button>
+                    <button mat-flat-button type="button" (click)="logout()">Se déconnecter</button>
+                </div>
             </form>
-            <div class="profile-btn-grp">
-                <button mat-flat-button color="primary">Sauvegarder</button>
-                <button mat-flat-button>Se déconnecter</button>
-            </div>
         </div>
         <div class="profile-themes-container">
-            <app-theme-card *ngFor="let theme of themes" [theme]="theme" [unsubscribe]="true"></app-theme-card>
+            <app-theme-card *ngFor="let theme of user?.themes" [theme]="theme" [unsubscribe]="true"></app-theme-card>
         </div>
     </div>
 </app-layout>

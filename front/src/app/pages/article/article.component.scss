@@ -57,6 +57,7 @@
     display: flex;
     flex-direction: column;
     gap: 30px;
+    margin-top: 30px;
 }
 .article-comment-title {
     font-weight: 400;
@@ -67,5 +68,13 @@
 .article-form {
     display: flex;
     flex-direction: row;
+    width: 100%;
+    align-items: center;
+}
+
+.article-form button {
+    margin-left: 31px;
+}
+.article-form .act {
     width: 100%;
 }

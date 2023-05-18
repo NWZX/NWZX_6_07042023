@@ -19,7 +19,7 @@ export class ArticlesService {
     return this.httpClient.get<IArticle>(`${this.pathService}/${id}`);
   }
 
-  public createArticle(article: IArticle): Observable<IArticle> {
+  public createArticle(article: Partial<IArticle>): Observable<IArticle> {
     return this.httpClient.post<IArticle>(`${this.pathService}`, article);
   }
 

@@ -3,7 +3,6 @@ export interface ISession {
   type: string;
   id: number;
   username: string;
-  firstName: string;
-  lastName: string;
+  name: string;
   admin: boolean;
 }

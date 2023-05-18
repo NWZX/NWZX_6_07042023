@@ -1,14 +1,14 @@
 <app-layout [displayTopBar]="true">
     <div class="login">
-        <div class="login-header"><mat-icon aria-hidden="false" aria-label="Back" fontIcon="arrow_back"></mat-icon></div>
+        <div class="login-header"><button mat-icon-button aria-label="Back" (click)="back()"><img src="assets/arrow_20.svg" alt="Back"/></button></div>
         <div class="login-img"><img src="assets/logo.png" alt="logo"></div>
         <div class="login-content">
             <h1 class="login-title">Se connecter</h1>
             <form class="login-form" [formGroup]="form" (ngSubmit)="submit()">
-                <app-custom-input label="E-mail ou nom d’utilisateur" type="email" formControlName="email"/>
-                <app-custom-input label="Mot de passe" type="password" formControlName="password"/>
+                <app-custom-input label="E-mail ou nom d’utilisateur" type="email" id="email" [control]="form.controls['email']"/>
+                <app-custom-input label="Mot de passe" type="password" id="password" [control]="form.controls['password']"/>
+                <button mat-flat-button color="primary" type="submit" [disabled]="form.invalid">Se connecter </button>
             </form>
-            <button mat-flat-button color="primary" type="submit" [disabled]="form.invalid">Se connecter </button>
         </div>
     </div>
 </app-layout>

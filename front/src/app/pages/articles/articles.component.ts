@@ -1,5 +1,8 @@
 import { Component, Input } from '@angular/core';
+import { Router } from '@angular/router';
+import { Observable } from 'rxjs';
 import { IArticle } from 'src/app/interfaces/iarticle';
+import { ArticlesService } from 'src/app/services/articles.service';
 
 @Component({
   selector: 'app-articles',
@@ -7,57 +10,20 @@ import { IArticle } from 'src/app/interfaces/iarticle';
   styleUrls: ['./articles.component.scss'],
 })
 export class ArticlesComponent {
-  @Input() articles: IArticle[];
-  constructor() {
-    this.articles = [
-      {
-        id: 1,
-        theme: {
-          id: 1,
-          title: 'Angular',
-        },
-        user: {
-          id: 1,
-          username: 'admin',
-        },
-        title: 'Angular',
-        content:
-          "Content: lorem ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled...",
-        created_at: '2021-01-01 00:00:00',
-        updated_at: '2021-01-01 00:00:00',
-      },
-      {
-        id: 2,
-        theme: {
-          id: 2,
-          title: 'React',
-        },
-        user: {
-          id: 2,
-          username: 'admin',
-        },
-        title: 'React',
-        content:
-          "Content: lorem ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled...",
-        created_at: '2021-01-01 00:00:00',
-        updated_at: '2021-01-01 00:00:00',
-      },
-      {
-        id: 3,
-        theme: {
-          id: 3,
-          title: 'Vue',
-        },
-        user: {
-          id: 3,
-          username: 'admin',
-        },
-        title: 'Vue',
-        content:
-          "Content: lorem ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled...",
-        created_at: '2021-01-01 00:00:00',
-        updated_at: '2021-01-01 00:00:00',
-      },
-    ];
+  public articles$: Observable<IArticle[]>;
+
+  constructor(
+    private articlesService: ArticlesService,
+    private router: Router
+  ) {
+    this.articles$ = this.articlesService.getArticles();
+  }
+
+  public sort(): void {
+    
+  }
+
+  public goToArticleNew(): void {
+    this.router.navigate(['/articles/new']);
   }
 }

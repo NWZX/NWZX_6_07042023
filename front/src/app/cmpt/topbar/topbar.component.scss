@@ -1,3 +1,5 @@
+@use 'src/styles/variables' as *;
+
 .topbar {
     width: 100%;
 }
@@ -12,4 +14,50 @@
     height: 48px;
     object-fit: cover;
     border-radius: 50%;
+}
+
+.mat-toolbar {
+    justify-content: space-between;
+}
+
+.topbar-content {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 30px;
+}
+
+.topbar-nav,
+.topbar-avatar {
+    display: none;
+}
+@media (min-width: $desktop-breakpoint) {
+    .topbar-nav, .topbar-avatar {
+        display: block;
+    }
+    .topbar-nav-mobile {
+        display: none;
+    }
+}
+
+.topbar-nav ul {
+    display: flex;
+    flex-direction: row;
+    gap: 11px;
+    align-items: center;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.topbar-nav a {
+    text-decoration: none;
+    color: #000000;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 24px;
+
+    &:hover {
+        color: #6C5CCF;
+    }
 }

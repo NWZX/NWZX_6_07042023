@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, tap } from 'rxjs';
 import { IComment } from '../interfaces/icomment';
 
 @Injectable({
@@ -15,11 +15,15 @@ export class CommentsService {
     return this.httpClient.get<IComment[]>(`${this.pathService}`);
   }
 
+  public getCommentsByArticle(articleId: number): Observable<IComment[]> {
+    return this.httpClient.get<IComment[]>(`${this.pathService}/article/${articleId}`);
+  }
+
   public getComment(id: number): Observable<IComment> {
     return this.httpClient.get<IComment>(`${this.pathService}/${id}`);
   }
 
-  public createComment(comment: IComment): Observable<IComment> {
+  public createComment(comment: Partial<IComment>): Observable<IComment> {
     return this.httpClient.post<IComment>(`${this.pathService}`, comment);
   }
 

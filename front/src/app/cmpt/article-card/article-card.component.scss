@@ -9,6 +9,9 @@
     padding: 12px 16px;
     background: #F5F5F5;
 
+    text-decoration: none;
+    color: #000000;
+
     @media (min-width: $desktop-breakpoint) {
         gap: 9px;
     }

@@ -1,7 +1,9 @@
+import { ITheme } from "./itheme";
+
 export interface IUser {
     id: number;
-    theme_ids: number[];
-    username: string;
+    themes: ITheme[];
+    name: string;
     email: string;
     password?: string;
     created_at: string;
